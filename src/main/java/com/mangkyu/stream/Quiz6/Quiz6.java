@@ -1,5 +1,9 @@
 package com.mangkyu.stream.Quiz6;
 
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.summingInt;
+
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,7 +42,8 @@ public class Quiz6 {
 
     // 각 반별 총점을 학년 별로 나누어 구하여라 (Map<Integer, Map<Integer, Integer>>)
     public Map<Integer, Map<Integer, Integer>> quiz2() {
-        return new HashMap<>();
+        return Arrays.stream(stuArr)
+                     .collect(groupingBy((Student::getHak), groupingBy(Student::getBan, summingInt(Student::getScore))));
     }
 
 }
